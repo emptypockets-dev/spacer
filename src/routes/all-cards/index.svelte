@@ -3,10 +3,12 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SelectedCard from '$lib/SelectedCard.svelte';
 	import SelectedCardHeader from '$lib/SelectedCardHeader.svelte';
-	import { projects } from '../../stores/cards';
+	// import { projects } from '$stores/cards';
+	// import { appState } from '$stores/app-state';
 	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
 
-	let title = 'All Cards';
+	import { onMount } from 'svelte';
+	let title = 'To Review';
 </script>
 
 <div class="relative h-screen overflow-hidden bg-gray-300 flex flex-col">

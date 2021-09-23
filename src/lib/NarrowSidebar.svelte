@@ -1,5 +1,17 @@
 <script>
 	import { getStores, navigating, page, session } from '$app/stores';
+	import { appState } from '../stores/app-state';
+
+	const handleReviewFilters = (name) => {
+		if (name === 'today') {
+			$appState.reviewLevelsFilter = [2, 1];
+			$appState.showingAllCards = false;
+		} else {
+			$appState.reviewLevelsFilter = [0, 1, 2, 3, 4, 5];
+			$appState.showingAllCards = true;
+		}
+		$appState.selectedCardId = null;
+	};
 </script>
 
 <!-- Narrow sidebar -->
@@ -14,6 +26,7 @@
 		</div>
 		<div class="flex-1 mt-6 w-full px-2 space-y-1">
 			<a
+				on:click={() => handleReviewFilters('today')}
 				href="/"
 				class="group-hover:text-white hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/'
@@ -39,6 +52,7 @@
 			</a>
 
 			<a
+				on:click={() => handleReviewFilters('all-cards')}
 				href="/all-cards"
 				class="group-hover:text-whitehover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/all-cards'
@@ -65,6 +79,7 @@
 			</a>
 
 			<a
+				on:click={() => handleReviewFilters('archive')}
 				href="/archive"
 				class="group-hover:text-white hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/archive'

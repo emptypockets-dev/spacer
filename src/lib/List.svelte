@@ -2,12 +2,12 @@
 	import { projects } from '../stores/cards';
 	import { appState } from '../stores/app-state';
 	import CardsNav from './CardsNav.svelte';
-
+	import { onMount } from 'svelte';
 	export let title = '';
-	let filteredCards = [];
+	let theFilteredCards = [];
 
 	$: {
-		filteredCards = $projects.collections[0].cards.filter((card) => {
+		theFilteredCards = $projects.collections[0].cards.filter((card) => {
 			return $appState.reviewLevelsFilter.includes(card.level);
 		});
 	}
@@ -21,8 +21,8 @@
 				<div class="flex items-baseline space-x-3">
 					<h2 class="text-lg font-medium text-gray-900">{title}</h2>
 					<p class="text-sm font-medium text-gray-500">
-						{#if filteredCards}
-							{filteredCards.length} cards total
+						{#if theFilteredCards}
+							{theFilteredCards.length} cards total
 						{/if}
 					</p>
 				</div>

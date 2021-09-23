@@ -68,7 +68,7 @@
 				</span>
 
 				<!-- Right buttons -->
-				{#if $page.path === '/all-cards'}
+				{#if $appState.showingAllCards}
 					<MoveButtons />
 				{:else}
 					<MoveLevelButtons />

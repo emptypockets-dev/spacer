@@ -1,4 +1,4 @@
-import { getParameters } from 'codesandbox/lib/api/define';
+import { getParameters } from 'codesandbox/lib/api/define.js';
 
 const addCodeToParams = (codeQuestion, codeAnswer) => {
 	const parameters = getParameters({

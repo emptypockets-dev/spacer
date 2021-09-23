@@ -1,31 +1,31 @@
-<script context="module">
-	export async function load({ session }) {
-		let { user } = session;
-
-		user = true;
-
-		if (!user) {
-			return {
-				status: 302,
-				redirect: '/hello'
-			};
-		}
-
-		return {};
-	}
-</script>
-
 <script>
 	import List from '$lib/List.svelte';
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SelectedCard from '$lib/SelectedCard.svelte';
 	import SelectedCardHeader from '$lib/SelectedCardHeader.svelte';
-	import { projects } from '../stores/cards';
-	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
-	import { appState } from '../stores/app-state';
 
+	import { projects } from '../stores/cards';
+	import { appState } from '../stores/app-state';
+	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
+
+	import { onMount } from 'svelte';
 	let title = 'To Review';
-	$appState.reviewLevelsFilter = [2, 1];
+
+	let filteredCards = [];
+
+	$: {
+		// filteredCards = $projects.collections[0].cards.filter((card) => {
+		// 	return $appState.reviewLevelsFilter.includes(card.level);
+		// });
+		// console.log(filteredCards);
+		// if ($appState.selectedCardId === null && filteredCards.length > 0) {
+		// 	$appState.selectedCardId = filteredCards[0].id;
+		// }
+		// selectedCard = filteredCards.find((card) => {
+		// 	return card.id === $appState.selectedCardId;
+		// });
+		// console.log($appState.selectedCardId);
+	}
 </script>
 
 <div class="relative h-screen overflow-hidden bg-gray-300 flex flex-col">

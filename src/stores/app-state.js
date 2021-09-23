@@ -4,5 +4,6 @@ export const appState = writable({
 	selectedCardId: null,
 	isAddCardSlideOverOpen: false,
 	isMoreDropdownOpen: false,
-	reviewLevelsFilter: [0, 1, 2, 3, 4, 5]
+	reviewLevelsFilter: [0, 1, 2, 3, 4, 5],
+	showingAllCards: true
 });
