@@ -8,8 +8,8 @@
 
 	import { fade, fly } from 'svelte/transition';
 	import * as dayjs from 'dayjs';
-	import relativeTime from 'dayjs/plugin/relativeTime';
-	import calendar from 'dayjs/plugin/calendar';
+	import relativeTime from 'dayjs/plugin/relativeTime.js';
+	import calendar from 'dayjs/plugin/calendar.js';
 	dayjs.extend(relativeTime);
 	dayjs.extend(calendar);
 
