@@ -17,7 +17,11 @@
 <!-- Card section-->
 {#if selectedCard}
 	{#key selectedCard.id}
-		<div class="py-7 space-y-2 sm:px-6 sm:space-y-4 lg:px-8">
+		<div
+			class="py-7 space-y-2 sm:px-6 sm:space-y-4 lg:px-8"
+			in:fly={{ y: 25, delay: 250 }}
+			out:fly|local={{ y: 25, duration: 250 }}
+		>
 			<div class="bg-white shadow sm:rounded-lg">
 				<div
 					class="bg-white px-6 py-8 shadow sm:rounded-lg"
