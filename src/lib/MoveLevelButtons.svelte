@@ -2,7 +2,7 @@
 	import { projects } from '../stores/cards';
 	import { appState } from '../stores/app-state';
 	import * as dayjs from 'dayjs';
-	import relativeTime from 'dayjs/plugin/relativeTime';
+	import relativeTime from 'dayjs/plugin/relativeTime.js';
 	dayjs.extend(relativeTime);
 
 	const moveToFirstLevel = () => {
