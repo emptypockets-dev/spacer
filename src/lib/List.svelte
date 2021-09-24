@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	export let title = '';
 	let filteredCards = [];
-	import * as dayjs from 'dayjs';
+	import dayjs from 'dayjs';
 
 	onMount(() => {
 		filteredCards = $projects.collections[0].cards.filter((card) => {
