@@ -4,13 +4,21 @@
 	import CardsNav from './CardsNav.svelte';
 	import { onMount } from 'svelte';
 	export let title = '';
-	let theFilteredCards = [];
+	let filteredCards = [];
+	import * as dayjs from 'dayjs';
 
-	$: {
-		theFilteredCards = $projects.collections[0].cards.filter((card) => {
-			return $appState.reviewLevelsFilter.includes(card.level);
+	onMount(() => {
+		filteredCards = $projects.collections[0].cards.filter((card) => {
+			if ($appState.showingAllCards) {
+				return card;
+			} else {
+				let startToday = dayjs().startOf('day');
+				let nextReview = dayjs(card.nextReview);
+				let isBetween = nextReview.isSame(startToday, 'day');
+				return isBetween;
+			}
 		});
-	}
+	});
 </script>
 
 <!-- Message list-->
@@ -21,8 +29,8 @@
 				<div class="flex items-baseline space-x-3">
 					<h2 class="text-lg font-medium text-gray-900">{title}</h2>
 					<p class="text-sm font-medium text-gray-500">
-						{#if theFilteredCards}
-							{theFilteredCards.length} cards total
+						{#if filteredCards}
+							{filteredCards.length} cards total
 						{/if}
 					</p>
 				</div>
@@ -33,6 +41,7 @@
 				Sorted by level
 			</div>
 		</div>
+
 		<CardsNav />
 	</div>
 </aside>

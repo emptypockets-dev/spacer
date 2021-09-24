@@ -10,17 +10,14 @@
 		selectedCard = $projects.collections[0].cards.find((card) => {
 			return card.id === $appState.selectedCardId;
 		});
+		console.log(selectedCard);
 	}
 </script>
 
 <!-- Card section-->
 {#if selectedCard}
 	{#key selectedCard.id}
-		<div
-			class="py-7 space-y-2 sm:px-6 sm:space-y-4 lg:px-8"
-			in:fly={{ delay: 300, duration: 250, y: 50 }}
-			out:fly={{ duration: 150, y: -50 }}
-		>
+		<div class="py-7 space-y-2 sm:px-6 sm:space-y-4 lg:px-8">
 			<div class="bg-white shadow sm:rounded-lg">
 				<div
 					class="bg-white px-6 py-8 shadow sm:rounded-lg"

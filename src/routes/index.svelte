@@ -3,29 +3,12 @@
 	import Toolbar from '$lib/Toolbar.svelte';
 	import SelectedCard from '$lib/SelectedCard.svelte';
 	import SelectedCardHeader from '$lib/SelectedCardHeader.svelte';
-
-	import { projects } from '../stores/cards';
-	import { appState } from '../stores/app-state';
 	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
-
 	import { onMount } from 'svelte';
+	import { appState } from '$stores/app-state';
 	let title = 'To Review';
 
-	let filteredCards = [];
-
-	$: {
-		// filteredCards = $projects.collections[0].cards.filter((card) => {
-		// 	return $appState.reviewLevelsFilter.includes(card.level);
-		// });
-		// console.log(filteredCards);
-		// if ($appState.selectedCardId === null && filteredCards.length > 0) {
-		// 	$appState.selectedCardId = filteredCards[0].id;
-		// }
-		// selectedCard = filteredCards.find((card) => {
-		// 	return card.id === $appState.selectedCardId;
-		// });
-		// console.log($appState.selectedCardId);
-	}
+	$appState.showingAllCards = false;
 </script>
 
 <div class="relative h-screen overflow-hidden bg-gray-300 flex flex-col">

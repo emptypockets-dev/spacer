@@ -1,6 +1,9 @@
 <script>
 	import { projects } from '../stores/cards';
 	import { appState } from '../stores/app-state';
+	import * as dayjs from 'dayjs';
+	import relativeTime from 'dayjs/plugin/relativeTime';
+	dayjs.extend(relativeTime);
 
 	const moveToFirstLevel = () => {
 		const card = $projects.collections[0].cards.find((card) => {
@@ -8,6 +11,8 @@
 		});
 
 		card.level = 1;
+		card.lastReview = dayjs().startOf('day');
+		card.nextReview = setNextReview(card.level, card.lastReview);
 		$projects = $projects;
 	};
 
@@ -17,8 +22,39 @@
 		});
 		if (card.level < 5) {
 			card.level += 1;
+			card.lastReview = dayjs().startOf('day');
+			card.nextReview = setNextReview(card.level, card.lastReview);
 		}
 		$projects = $projects;
+	};
+
+	const setNextReview = (level, lastReview) => {
+		switch (level) {
+			case 1:
+				return lastReview.add(1, 'day');
+
+				break;
+			case 2:
+				return lastReview.add(2, 'day');
+				break;
+			case 3:
+				return lastReview.add(4, 'day');
+				break;
+			case 4:
+				return lastReview.add(8, 'day');
+				break;
+			case 5:
+				return lastReview.add(16, 'day');
+				break;
+			case 6:
+				return lastReview.add(32, 'day');
+				break;
+			case 6:
+				return lastReview.add(64, 'day');
+				break;
+			default:
+				break;
+		}
 	};
 </script>
 

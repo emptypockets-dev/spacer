@@ -20,7 +20,8 @@
 			question: question,
 			level: 1,
 			level_name: levelLabels[1].name,
-			lastReview: null,
+			lastReview: new Date(),
+			nextReview: new Date(),
 			id: $projects.collections[0].cards.length
 		};
 

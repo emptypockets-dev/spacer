@@ -4,13 +4,13 @@
 
 	const handleReviewFilters = (name) => {
 		if (name === 'today') {
-			$appState.reviewLevelsFilter = [2, 1];
+			// $appState.reviewLevelsFilter = [2, 1];
 			$appState.showingAllCards = false;
 		} else {
-			$appState.reviewLevelsFilter = [0, 1, 2, 3, 4, 5];
+			// $appState.reviewLevelsFilter = [0, 1, 2, 3, 4, 5];
 			$appState.showingAllCards = true;
 		}
-		$appState.selectedCardId = null;
+		// $appState.selectedCardId = null;
 	};
 </script>
 
