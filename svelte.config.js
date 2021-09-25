@@ -14,9 +14,6 @@ const config = {
 					// these are the aliases and paths to them
 					$stores: path.resolve('./src/stores')
 				}
-			},
-			optimizeDeps: {
-				include: ['highlight.js/lib/core']
 			}
 		}
 	}

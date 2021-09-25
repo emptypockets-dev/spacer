@@ -4,88 +4,12 @@
 	import { fly } from 'svelte/transition';
 	import { levelLabels } from '../routes/api/utils';
 	import { code } from '../stores/code';
-	// import { clickOutside } from 'fractils';
-
-	// let clickedOutside;
-
-	// function handleClickOutside() {
-	// 	clickedOutside = true;
-	// 	setTimeout(() => {
-	// 		clickedOutside = false;
-	// 	}, 1000);
-	// }
-
-	// import 'codemirror/mode/javascript/javascript';
-	// import CodeMirror from '@joshnuss/svelte-codemirror';
-
-	// let editor;
 
 	import Editor from '$lib/Editor.svelte';
-	import 'svelte-highlight/src/styles/atom-one-dark.css';
 	let codeAnswer = 'const add = (a: number, b: number) => a + b;';
-	// let code = '';
-	import github from 'svelte-highlight/src/styles/github-dark';
-
-	import hljs from 'highlight.js';
-	import 'highlight.js/styles/github.css';
-	// import github from 'svelte-highlight/src/styles/github-dark';
-
-	let box;
-	let xScroll = 0;
-	let yScroll = 0;
-
-	// $: highlightCode = code;
-
-	let html = hljs.highlightAuto('<h1>Hello World!</h1>').value;
-	// let code = 'const add = (a: number, b: number) => a + b;';
-	let highlightCode;
-
-	// $: highlightCode = hljs.highlight(code, {
-	// 	language: 'javascript'
-	// }).value;
-
-	// $: {
-	// 	// Handle final newlines (see article)
-	// 	if (code[code.length - 1] == '\n') {
-	// 		// If the last character is a newline character
-	// 		code += ' '; // Add a placeholder space character to the final line
-	// 	}
-	// }
-
-	// function check_tab(event) {
-	// 	code = box.value;
-	// 	if (event.key == 'Tab') {
-	// 		event.preventDefault();
-	// 		let before_tab = code.slice(0, box.selectionStart); // text before tab
-	// 		let after_tab = code.slice(box.selectionEnd, box.value.length); // text after tab
-	// 		let cursor_pos = box.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
-	// 		box.value = before_tab + '\t' + after_tab; // add tab char
-	// 		// move cursor
-	// 		box.selectionStart = cursor_pos;
-	// 		box.selectionEnd = cursor_pos;
-	// 		code = box.value;
-	// 	}
-	// }
-
-	// $: {
-	// 	if (code[code.length - 1] == '\n') {
-	// 		// If the last character is a newline character
-	// 		code += ' '; // Add a placeholder space character to the final line
-	// 	}
-	// }
-
-	// function parseScroll() {
-	// 	xScroll = box.scrollLeft;
-	// 	yScroll = box.scrollTop;
-	// 	let pre = document.querySelector('pre');
-	// 	let code = document.querySelector('code');
-	// 	pre.scrollTop = yScroll;
-	// 	code.scrollTop = yScroll;
-	// }
 
 	$: {
 		codeAnswer = $code;
-		console.log(codeAnswer);
 	}
 
 	let message = '';
@@ -94,7 +18,6 @@
 	let title = '';
 	let question = '';
 	let codeQuestion = 'let code = "question";';
-	// let codeAnswer = 'let code = "answer";';
 
 	const createNewCard = ({ title, question, sandboxId }) => {
 		let embed = sandboxId.sandbox_id;
@@ -140,10 +63,6 @@
 	};
 </script>
 
-<svelte:head>
-	{@html github}
-</svelte:head>
-
 <div
 	class="fixed inset-0 overflow-hidden"
 	class:pointer-events-none={!$appState.isAddCardSlideOverOpen}
@@ -159,10 +78,7 @@
 				: 'transition-all duration-250'}"
 			aria-hidden={$appState.isAddCardSlideOverOpen ? 'false' : 'true'}
 		>
-			<div
-				use:clickOutside={handleClickOutside}
-				class="fixed inset-y-0 pl-16 max-w-full right-0 flex"
-			>
+			<div class="fixed inset-y-0 pl-16 max-w-full right-0 flex">
 				{#if $appState.isAddCardSlideOverOpen}
 					<div
 						class="w-screen max-w-md z-10 translate-x-full"
