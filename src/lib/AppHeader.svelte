@@ -1,6 +1,6 @@
 <script>
 	import { appState } from '../stores/app-state';
-	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
+	// import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
 
 	const handleSlideOver = () => {
 		$appState.isAddCardSlideOverOpen = !$appState.isAddCardSlideOverOpen;

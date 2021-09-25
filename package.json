@@ -23,10 +23,19 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@joshnuss/svelte-codemirror": "^0.2.6",
+		"@novacbn/svelte-codejar": "^0.1.0",
 		"autoprefixer": "^10.3.4",
+		"codejar": "^3.5.0",
+		"codemirror": "^5.63.0",
 		"codesandbox": "^2.2.3",
 		"dayjs": "^1.10.7",
+		"highlight.js": "^11.2.0",
 		"postcss": "^8.3.6",
+		"prismjs": "^1.25.0",
+		"shiki": "^0.9.11",
+		"svelte-code-editor": "^1.0.1",
+		"svelte-highlight": "^4.0.0",
 		"svelte-local-storage-store": "^0.2.4",
 		"tailwindcss": "^2.2.15"
 	}

@@ -4,6 +4,71 @@
 	import { fly } from 'svelte/transition';
 	import { levelLabels } from '../routes/api/utils';
 
+	import Highlight from 'svelte-highlight';
+	import { HighlightAuto } from 'svelte-highlight';
+	import javascript from 'svelte-highlight/src/languages/javascript';
+	import 'svelte-highlight/src/styles/atom-one-dark.css';
+	// let highlightCode = 'const add = (a: number, b: number) => a + b;';
+	// let code = '';
+	import github from 'svelte-highlight/src/styles/github-dark';
+
+	import hljs from 'highlight.js';
+	import 'highlight.js/styles/github.css';
+	// import github from 'svelte-highlight/src/styles/github-dark';
+
+	let box;
+	let xScroll = 0;
+	let yScroll = 0;
+
+	// $: highlightCode = code;
+
+	let html = hljs.highlightAuto('<h1>Hello World!</h1>').value;
+	let code = 'const add = (a: number, b: number) => a + b;';
+	let highlightCode;
+
+	$: highlightCode = hljs.highlight(code, {
+		language: 'javascript'
+	}).value;
+
+	$: {
+		// Handle final newlines (see article)
+		if (code[code.length - 1] == '\n') {
+			// If the last character is a newline character
+			code += ' '; // Add a placeholder space character to the final line
+		}
+	}
+
+	function check_tab(event) {
+		code = box.value;
+		if (event.key == 'Tab') {
+			event.preventDefault();
+			let before_tab = code.slice(0, box.selectionStart); // text before tab
+			let after_tab = code.slice(box.selectionEnd, box.value.length); // text after tab
+			let cursor_pos = box.selectionEnd + 1; // where cursor moves after tab - moving forward by 1 char to after tab
+			box.value = before_tab + '\t' + after_tab; // add tab char
+			// move cursor
+			box.selectionStart = cursor_pos;
+			box.selectionEnd = cursor_pos;
+			code = box.value;
+		}
+	}
+
+	// $: {
+	// 	if (code[code.length - 1] == '\n') {
+	// 		// If the last character is a newline character
+	// 		code += ' '; // Add a placeholder space character to the final line
+	// 	}
+	// }
+
+	function parseScroll() {
+		xScroll = box.scrollLeft;
+		yScroll = box.scrollTop;
+		let pre = document.querySelector('pre');
+		let code = document.querySelector('code');
+		pre.scrollTop = yScroll;
+		code.scrollTop = yScroll;
+	}
+
 	let message = '';
 	let error = '';
 
@@ -34,6 +99,7 @@
 	};
 
 	const handleSubmit = async () => {
+		console.log('value', value);
 		try {
 			const submit = await fetch('/api/sandbox', {
 				method: 'POST',
@@ -45,7 +111,7 @@
 				})
 			});
 			const data = await submit.json();
-			console.log('drafts', data);
+			// console.log('drafts', data);
 			// console.log('card', card.sandboxId.sandbox_id);
 			createNewCard(data);
 			handleCloseToggle();
@@ -54,6 +120,10 @@
 		}
 	};
 </script>
+
+<svelte:head>
+	{@html github}
+</svelte:head>
 
 <div
 	class="fixed inset-0 overflow-hidden"
@@ -149,23 +219,46 @@
 												<label for="code-answer" class="block text-sm font-medium text-gray-700"
 													>Code Question</label
 												>
-												<div class="mt-1">
-													<textarea
+												<!-- {#if CodeJar}
+													<CodeJar
+														class="hljs"
+														syntax="javascript"
+														{highlight}
 														bind:value={codeQuestion}
-														class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+														addClosing={true}
+														indentOn={/{$/}
+														spellcheck={false}
+														tab={'\t'}
 													/>
-												</div>
+												{:else}
+
+													<pr><code>{codeQuestion}</code></pr>
+												{/if} -->
 											</div>
+
 											<div>
 												<label for="code-answer" class="block text-sm font-medium text-gray-700"
 													>Code Answer</label
 												>
-												<div class="mt-1">
+
+												<div class="input-wrapper">
 													<textarea
-														bind:value={codeAnswer}
-														class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+														on:keydown={check_tab}
+														class="box"
+														bind:this={box}
+														on:scroll={parseScroll}
+														spellcheck="false"
+														bind:value={code}
 													/>
+
+													<div class="highlighted">
+														<pre><code>{@html highlightCode}</code></pre>
+													</div>
 												</div>
+											</div>
+											<div style="margin-top: 200px;" class="report">
+												<div>horizontal: {xScroll}</div>
+												<div>vertical: {yScroll}</div>
 											</div>
 										</div>
 									</div>
@@ -194,3 +287,53 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.input-wrapper {
+		position: relative;
+	}
+
+	.input-wrapper textarea {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		line-height: 1.2;
+		width: 400px;
+		height: 160px;
+		background: transparent;
+		color: rgba(0, 0, 0, 0);
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			'Courier New', monospace;
+		font-size: 1em;
+		caret-color: black;
+		overflow: auto;
+		white-space: pre-wrap;
+		resize: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	.highlighted {
+		padding: 0;
+		margin: 0;
+	}
+	.highlighted pre {
+		margin: 0;
+	}
+
+	.highlighted,
+	.highlighted pre,
+	.highlighted code {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
+			'Courier New', monospace;
+		width: 400px;
+		height: 160px;
+		overflow: auto;
+		line-height: 1.2;
+		white-space: pre-wrap;
+	}
+</style>
