@@ -5,20 +5,19 @@
 	import { indentWithTab } from '@codemirror/commands';
 	import { javascript } from '@codemirror/lang-javascript';
 	import { onMount } from 'svelte';
-	import { code } from '../stores/code';
+	import { questionCode } from '../stores/question-code';
+	import { answerCode } from '../stores/answer-code';
 
-	export let codeAnswer = `if (true) {
-	console.log("okay")
-} else {
-	console.log("oh no")
-}
-`;
+	export let id;
+	export let code;
 
 	onMount(() => {
+		console.log(code);
+
 		let language = new Compartment(),
 			tabSize = new Compartment();
 		let state = EditorState.create({
-			doc: `let answer = 'this';\n`,
+			doc: code,
 			extensions: [
 				basicSetup,
 				keymap.of([indentWithTab]),
@@ -26,15 +25,18 @@
 				tabSize.of(EditorState.tabSize.of(2)),
 				EditorView.updateListener.of((e) => {
 					if (e.docChanged) {
-						console.log(e);
-						$code = e.state.doc.toString().replace(`let answer = 'this';\n`, '');
+						if (id === 'editor-1') {
+							$questionCode = e.state.doc.toString();
+						} else if (id === 'editor-2') {
+							$answerCode = e.state.doc.toString();
+						}
 					}
 				})
 			]
 		});
 		let view = new EditorView({
 			state,
-			parent: document.querySelector('#editor')
+			parent: document.querySelector(`#${id}`)
 		});
 		// editor = new EditorView({
 		// 	state: EditorState.create({

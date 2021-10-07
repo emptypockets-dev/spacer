@@ -3,21 +3,42 @@
 	import { projects } from '../stores/cards';
 	import { fly } from 'svelte/transition';
 	import { levelLabels } from '../routes/api/utils';
-	import { code } from '../stores/code';
-
+	import { questionCode } from '../stores/question-code';
+	import { answerCode } from '../stores/answer-code';
 	import Editor from '$lib/Editor.svelte';
-	let codeAnswer = 'const add = (a: number, b: number) => a + b;';
+	import { onMount } from 'svelte';
+	let codeAnswer = 'const add = () => a + b;';
+	let codeQuestion = 'let code = "question";';
+	import { clickOutside } from 'fractils';
 
-	$: {
-		codeAnswer = $code;
+	let clickedOutside;
+
+	function handleClickOutside() {
+		handleCloseToggle();
 	}
 
-	let message = '';
-	let error = '';
+	onMount(() => {
+		codeAnswer = `
+/* Add the solution here */
+
+const add = () => a + b;
+
+/* Add the solution here */
+		`;
+		codeQuestion = `
+/* Add starter code here */
+
+let code = "question";
+
+/* Add starter code here */
+		`;
+	});
+
+	$: codeAnswer = $answerCode;
+	$: codeQuestion = $questionCode;
 
 	let title = '';
 	let question = '';
-	let codeQuestion = 'let code = "question";';
 
 	const createNewCard = ({ title, question, sandboxId }) => {
 		let embed = sandboxId.sandbox_id;
@@ -53,8 +74,6 @@
 				})
 			});
 			const data = await submit.json();
-			// console.log('drafts', data);
-			// console.log('card', card.sandboxId.sandbox_id);
 			createNewCard(data);
 			handleCloseToggle();
 		} catch (err) {
@@ -81,6 +100,7 @@
 			<div class="fixed inset-y-0 pl-16 max-w-full right-0 flex">
 				{#if $appState.isAddCardSlideOverOpen}
 					<div
+						use:clickOutside={handleClickOutside}
 						class="w-screen max-w-md z-10 translate-x-full"
 						in:fly={{ x: 450 }}
 						out:fly={{ x: 450 }}
@@ -89,7 +109,9 @@
 							<div class="flex-1 h-0 overflow-y-auto">
 								<div class="py-6 px-4 bg-indigo-700 sm:px-6">
 									<div class="flex items-center justify-between">
-										<h2 class="text-lg font-medium text-white" id="slide-over-title">New Card</h2>
+										<h2 class="text-lg font-medium text-white" id="slide-over-title">
+											New Card - {clickedOutside}
+										</h2>
 										<div class="ml-3 h-7 flex items-center">
 											<button
 												on:click={handleCloseToggle}
@@ -127,7 +149,7 @@
 										<div class="space-y-6 pt-6 pb-5">
 											<div>
 												<label for="title" class="block text-sm font-medium text-gray-900">
-													Title
+													Card Title
 												</label>
 												<div class="mt-1">
 													<input
@@ -141,7 +163,7 @@
 											</div>
 											<div>
 												<label for="question" class="block text-sm font-medium text-gray-900">
-													Question
+													The Question
 												</label>
 												<div class="mt-1">
 													<input
@@ -154,26 +176,19 @@
 												</div>
 											</div>
 											<div>
-												<label for="code-question" class="block text-sm font-medium text-gray-700"
-													>Code Question</label
+												<label for="code-answer" class="block text-sm font-medium text-gray-700"
+													>Starter Code</label
 												>
-												<div class="mt-1">
-													<input
-														bind:value={codeQuestion}
-														type="text"
-														name="project-name"
-														id="project-name"
-														class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-													/>
-												</div>
+												<div id="editor-1" />
+												<Editor id={'editor-1'} code={codeQuestion} />
 											</div>
 
 											<div>
 												<label for="code-answer" class="block text-sm font-medium text-gray-700"
-													>Code Answer</label
+													>The Solution</label
 												>
-												<div id="editor" />
-												<Editor {codeAnswer} />
+												<div id="editor-2" />
+												<Editor id={'editor-2'} code={codeAnswer} />
 											</div>
 										</div>
 									</div>

@@ -28,7 +28,11 @@
 				{/if}
 			</h1>
 
-			<!-- <p class="mt-1 text-sm text-gray-500 truncate">in javascript</p> -->
+			<p class="mt-1 text-sm text-gray-500 truncate">
+				{#if selectedCard}
+					{selectedCard.question}
+				{/if}
+			</p>
 		</div>
 
 		<div

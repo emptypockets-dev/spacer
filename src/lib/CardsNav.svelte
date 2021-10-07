@@ -56,8 +56,6 @@
 	<nav aria-label="Message list" class="min-h-0 flex-1 overflow-y-auto">
 		<ul role="list" class="border-b border-gray-200 divide-y divide-gray-200">
 			{#each filteredCards as card (card.id)}
-				<!-- out:fade={{ duration: 250 }} -->
-				<!-- in:fade={{ delay: 500 }} -->
 				<li
 					class="relative bg-white py-5 px-6 hover:bg-gray-100 focus-within:ring-2 focus-within:ring-inset focus-within:ring-blue-600"
 					class:bg-gray-100={card.id === $appState.selectedCardId}
@@ -71,11 +69,15 @@
 							>
 								<span class="absolute inset-0" aria-hidden="true" />
 								<p class="text-sm font-medium text-gray-900 truncate">{card.title}</p>
-								<p class="text-sm text-gray-500 truncate">
+								<!-- <p class="text-sm text-gray-500 truncate">
 									<span>review</span>
 									{dayjs().to(dayjs(card.nextReview))}
 								</p>
-								<!-- {dayjs(card.nextReview).format('MM/DD/YYYY')} -->
+								<p>{dayjs().calendar(dayjs(card.nextReview))}</p> -->
+								<p class="text-sm text-gray-500 truncate">
+									review
+									{dayjs(card.nextReview).format('MM/DD/YYYY')}
+								</p>
 							</a>
 						</div>
 						<span
