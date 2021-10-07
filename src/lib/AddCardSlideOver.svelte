@@ -18,19 +18,17 @@
 	}
 
 	onMount(() => {
-		codeAnswer = `
-/* Add the solution here */
+		codeAnswer = `/* Add the solution here */
 
 const add = () => a + b;
 
-/* Add the solution here */
+
 		`;
-		codeQuestion = `
-/* Add starter code here */
+		codeQuestion = `/* Add starter code here */
 
 let code = "question";
 
-/* Add starter code here */
+
 		`;
 	});
 
@@ -39,6 +37,21 @@ let code = "question";
 
 	let title = '';
 	let question = '';
+
+	const handleFormReset = () => {
+		codeAnswer = `/* Add the solution here */
+
+const add = () => a + b;
+
+
+		`;
+		codeQuestion = `/* Add starter code here */
+
+let code = "question";
+
+
+		`;
+	};
 
 	const createNewCard = ({ title, question, sandboxId }) => {
 		let embed = sandboxId.sandbox_id;
@@ -76,6 +89,7 @@ let code = "question";
 			const data = await submit.json();
 			createNewCard(data);
 			handleCloseToggle();
+			handleFormReset();
 		} catch (err) {
 			error = err;
 		}
@@ -101,7 +115,7 @@ let code = "question";
 				{#if $appState.isAddCardSlideOverOpen}
 					<div
 						use:clickOutside={handleClickOutside}
-						class="w-screen max-w-md z-10 translate-x-full"
+						class="w-screen max-w-lg z-10 translate-x-full"
 						in:fly={{ x: 450 }}
 						out:fly={{ x: 450 }}
 					>
@@ -109,9 +123,7 @@ let code = "question";
 							<div class="flex-1 h-0 overflow-y-auto">
 								<div class="py-6 px-4 bg-indigo-700 sm:px-6">
 									<div class="flex items-center justify-between">
-										<h2 class="text-lg font-medium text-white" id="slide-over-title">
-											New Card - {clickedOutside}
-										</h2>
+										<h2 class="text-lg font-medium text-white" id="slide-over-title">New Card</h2>
 										<div class="ml-3 h-7 flex items-center">
 											<button
 												on:click={handleCloseToggle}

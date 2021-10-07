@@ -69,18 +69,19 @@
 							>
 								<span class="absolute inset-0" aria-hidden="true" />
 								<p class="text-sm font-medium text-gray-900 truncate">{card.title}</p>
+
 								<!-- <p class="text-sm text-gray-500 truncate">
 									<span>review</span>
 									{dayjs().to(dayjs(card.nextReview))}
 								</p>
 								<p>{dayjs().calendar(dayjs(card.nextReview))}</p> -->
-								<p class="text-sm text-gray-500 truncate">
+								<!-- <p class="text-sm text-gray-500 truncate">
 									review
 									{dayjs(card.nextReview).format('MM/DD/YYYY')}
-								</p>
+								</p> -->
 							</a>
 						</div>
-						<span
+						<!-- <span
 							class="inline-flex justify-start items-center px-2.5 py-0.5 rounded-full text-xs font-medium {levelLabels[
 								card.level
 							].color} {levelLabels[card.level].bg}"
@@ -92,8 +93,9 @@
 							>
 								<circle cx="4" cy="4" r="3" />
 							</svg>
+							{dayjs(card.nextReview).format('MM/DD/YYYY')}
 							{levelLabels[card.level].name}
-						</span>
+						</span> -->
 					</div>
 					<div class="mt-1">
 						<p class="line-clamp-2 text-sm text-gray-600">

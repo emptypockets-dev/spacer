@@ -65,7 +65,7 @@
 		<button
 			on:click|preventDefault={moveToFirstLevel}
 			type="button"
-			class="inline-flex items-center justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
+			class="inline-flex items-center justify-center px-4 py-2 border border-gray-600 bg-gray-700 shadow-sm text-sm font-medium rounded-md text-gray-300  hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -81,14 +81,14 @@
 					d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
 				/>
 			</svg>
-			<span>&nbsp;&nbsp;to level one</span>
+			<span>&nbsp;&nbsp;Review again tomorrow</span>
 		</button>
 		<button
 			on:click|preventDefault={moveToNextLevel}
 			type="button"
 			class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
 		>
-			<span>Promote to level two&nbsp;&nbsp;</span>
+			<span>Got it! Review in 4 days &nbsp;&nbsp;</span>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="h-5 w-5"

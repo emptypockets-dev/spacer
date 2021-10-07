@@ -6,7 +6,7 @@
 </script>
 
 <!-- Toolbar-->
-<div class="flex-shrink-0 bg-white border-b border-gray-200">
+<div class="flex-shrink-0" style="background-color: rgb(21,21,21);">
 	<div class="h-16 flex flex-col justify-center">
 		<div class="px-4 sm:px-6 lg:px-8">
 			<div class="py-3 flex justify-between">
@@ -16,7 +16,7 @@
 					<span class="hidden lg:flex space-x-3">
 						<button
 							type="button"
-							class="hidden sm:inline-flex -ml-px relative items-center px-4 py-2 rounded-md border border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+							class="hidden sm:inline-flex -ml-px relative items-center px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-800 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
 						>
 							<!-- Heroicon name: solid/archive -->
 							<svg
@@ -68,11 +68,12 @@
 				</span>
 
 				<!-- Right buttons -->
-				{#if $appState.showingAllCards}
+				<!-- {#if $appState.showingAllCards}
 					<MoveButtons />
 				{:else}
 					<MoveLevelButtons />
-				{/if}
+				{/if} -->
+				<MoveLevelButtons />
 			</div>
 		</div>
 	</div>

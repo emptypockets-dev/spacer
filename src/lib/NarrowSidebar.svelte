@@ -75,7 +75,7 @@
 						d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
 					/>
 				</svg>
-				<span class="mt-2">All Cards</span>
+				<span class="mt-2 text-center">All Code Snippets</span>
 			</a>
 
 			<a
@@ -101,7 +101,7 @@
 						d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
 					/>
 				</svg>
-				<span class="mt-2">Archive</span>
+				<span class="mt-2 text-center">Knowledge Vault</span>
 			</a>
 
 			<a

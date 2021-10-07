@@ -17,10 +17,13 @@
 	};
 </script>
 
-<div class="bg-white pt-5 pb-6 shadow">
+<div
+	class="bg-white pt-5 pb-6 shadow border-b border-t border-gray-700"
+	style="background-color: rgb(21,21,21)"
+>
 	<div class="px-4 sm:flex sm:justify-between sm:items-baseline sm:px-6 lg:px-8">
 		<div class="sm:w-0 sm:flex-1">
-			<h1 id="message-heading" class="text-xl font-medium text-gray-900">
+			<h1 id="message-heading" class="text-xl font-medium text-white">
 				{#if selectedCard}
 					{selectedCard.title}
 				{:else}
@@ -28,7 +31,7 @@
 				{/if}
 			</h1>
 
-			<p class="mt-1 text-sm text-gray-500 truncate">
+			<p class="mt-1 text-sm text-gray-400 truncate">
 				{#if selectedCard}
 					{selectedCard.question}
 				{/if}

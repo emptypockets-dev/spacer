@@ -8,7 +8,7 @@
 </script>
 
 <header class="w-full z-0">
-	<div class="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
+	<div class="relative z-10 flex-shrink-0 h-16 bg-gray-100 border-b border-gray-200 shadow-sm flex">
 		<button
 			type="button"
 			class="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
@@ -31,7 +31,7 @@
 				/>
 			</svg>
 		</button>
-		<div class="flex-1 flex justify-between px-4 sm:px-6">
+		<div class="flex-1 flex justify-between px-4 sm:px-6 bg-gray-100">
 			<div class="flex-1 flex">
 				<form class="w-full flex md:ml-0" action="#" method="GET">
 					<label for="desktop-search-field" class="sr-only">Search all cards</label>
@@ -56,14 +56,14 @@
 						<input
 							name="mobile-search-field"
 							id="mobile-search-field"
-							class="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:hidden"
+							class="h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:hidden bg-gray-100"
 							placeholder="Search"
 							type="search"
 						/>
 						<input
 							name="desktop-search-field"
 							id="desktop-search-field"
-							class="hidden h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block"
+							class="hidden h-full w-full border-transparent py-2 pl-8 pr-3 text-base text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-transparent focus:placeholder-gray-400 sm:block bg-gray-100"
 							placeholder="Search all cards"
 							type="search"
 						/>
