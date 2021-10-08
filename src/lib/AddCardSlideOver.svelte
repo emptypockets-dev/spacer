@@ -18,15 +18,42 @@
 	}
 
 	onMount(() => {
-		codeAnswer = `/* Add the solution here */
+		codeQuestion = `// Can you create a variable that contains
+// just the color of the mind stone?
 
-const add = () => a + b;
+const infinityStoneColors = {
+  space: "blue",
+  mind: "yellow",
+  reality: "red",
+  power: "purple",
+  time: "green",
+  soul: "orange"
+};
 
-
+/** BONUS **/
+// How do you rename the variable you create?
 		`;
-		codeQuestion = `/* Add starter code here */
 
-let code = "question";
+		codeAnswer = `// Can you create a const that contains
+// just the color of the mind stone?
+
+  const infinityStoneColors = {
+  space: "blue",
+  mind: "yellow",
+  reality: "red",
+  power: "purple",
+  time: "green",
+  soul: "orange"
+};
+
+/** ANSWER **/
+const { mind } = infinityStoneColors;
+console.log(mind); // "yellow"
+
+/** BONUS ANSWER **/
+// Rename your const to be more specific
+const { mind: mindStoneColor } = infinityStoneColors;
+console.log(mindStoneColor); // "yellow"
 
 
 		`;
@@ -115,7 +142,7 @@ let code = "question";
 				{#if $appState.isAddCardSlideOverOpen}
 					<div
 						use:clickOutside={handleClickOutside}
-						class="w-screen max-w-lg z-10 translate-x-full"
+						class="w-screen max-w-2xl z-10 translate-x-full"
 						in:fly={{ x: 450 }}
 						out:fly={{ x: 450 }}
 					>
@@ -161,7 +188,7 @@ let code = "question";
 										<div class="space-y-6 pt-6 pb-5">
 											<div>
 												<label for="title" class="block text-sm font-medium text-gray-900">
-													Card Title
+													Review title
 												</label>
 												<div class="mt-1">
 													<input
@@ -169,11 +196,13 @@ let code = "question";
 														type="text"
 														name="project-name"
 														id="project-name"
-														class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+														placeholder="Name the thing you want to review"
+														class="block w-full 
+														shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
 													/>
 												</div>
 											</div>
-											<div>
+											<!-- <div>
 												<label for="question" class="block text-sm font-medium text-gray-900">
 													The Question
 												</label>
@@ -186,11 +215,15 @@ let code = "question";
 														class="block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
 													/>
 												</div>
-											</div>
+											</div> -->
 											<div>
 												<label for="code-answer" class="block text-sm font-medium text-gray-700"
 													>Starter Code</label
 												>
+												<p class="text-gray-600 text-sm mb-1">
+													Create the first part of a code challenge. Include any information you'll
+													need to solve it.
+												</p>
 												<div id="editor-1" />
 												<Editor id={'editor-1'} code={codeQuestion} />
 											</div>
@@ -199,6 +232,9 @@ let code = "question";
 												<label for="code-answer" class="block text-sm font-medium text-gray-700"
 													>The Solution</label
 												>
+												<p class="text-gray-600 text-sm mb-1">
+													Add the complete solution including the initial variables here.
+												</p>
 												<div id="editor-2" />
 												<Editor id={'editor-2'} code={codeAnswer} />
 											</div>

@@ -7,19 +7,19 @@
 	import { onMount } from 'svelte';
 	import { questionCode } from '../stores/question-code';
 	import { answerCode } from '../stores/answer-code';
+	import { oneDark } from './theme';
 
 	export let id;
 	export let code;
 
 	onMount(() => {
-		console.log(code);
-
 		let language = new Compartment(),
 			tabSize = new Compartment();
 		let state = EditorState.create({
 			doc: code,
 			extensions: [
 				basicSetup,
+				oneDark,
 				keymap.of([indentWithTab]),
 				language.of(javascript()),
 				tabSize.of(EditorState.tabSize.of(2)),
@@ -34,17 +34,11 @@
 				})
 			]
 		});
+
 		let view = new EditorView({
 			state,
 			parent: document.querySelector(`#${id}`)
 		});
-		// editor = new EditorView({
-		// 	state: EditorState.create({
-		// 		doc,
-		// 		extensions: [basicSetup, keymap.of([indentWithTab]), javascript()]
-		// 	}),
-		// 	parent: document.querySelector('#editor')
-		// });
 	});
 
 	function setTabSize(view, size) {

@@ -37,7 +37,7 @@
 		<a
 			on:click|preventDefault={selectPreviousIndex}
 			href="/"
-			class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+			class="relative inline-flex items-center px-4 py-2 rounded-l-md border border-gray-500 bg-gray-600 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
 		>
 			<span class="sr-only">Previous</span>
 			<!-- Heroicon name: solid/chevron-up -->
@@ -58,7 +58,7 @@
 		<a
 			on:click|preventDefault={selectNextIndex}
 			href="/"
-			class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+			class="-ml-px relative inline-flex items-center px-4 py-2 rounded-r-md border border-gray-500 bg-gray-600 text-sm font-medium text-gray-300 hover:bg-gray-700 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
 		>
 			<span class="sr-only">Next</span>
 

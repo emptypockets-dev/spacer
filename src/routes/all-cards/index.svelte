@@ -11,7 +11,7 @@
 	let title = 'To Review';
 </script>
 
-<div class="relative h-screen overflow-hidden bg-gray-300 flex flex-col">
+<div class="relative h-screen overflow-hidden bg-black flex flex-col">
 	<div class="min-h-0 flex-1 flex overflow-hidden">
 		<!-- Main area -->
 		<main class="min-w-0 flex-1 xl:flex">

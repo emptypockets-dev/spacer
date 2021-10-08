@@ -81,7 +81,7 @@
 								</p> -->
 							</a>
 						</div>
-						<!-- <span
+						<span
 							class="inline-flex justify-start items-center px-2.5 py-0.5 rounded-full text-xs font-medium {levelLabels[
 								card.level
 							].color} {levelLabels[card.level].bg}"
@@ -93,9 +93,9 @@
 							>
 								<circle cx="4" cy="4" r="3" />
 							</svg>
-							{dayjs(card.nextReview).format('MM/DD/YYYY')}
+							<!-- {dayjs(card.nextReview).format('MM/DD/YYYY')} -->
 							{levelLabels[card.level].name}
-						</span> -->
+						</span>
 					</div>
 					<div class="mt-1">
 						<p class="line-clamp-2 text-sm text-gray-600">

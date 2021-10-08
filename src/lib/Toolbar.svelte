@@ -68,12 +68,12 @@
 				</span>
 
 				<!-- Right buttons -->
-				<!-- {#if $appState.showingAllCards}
+				{#if $appState.showingAllCards}
 					<MoveButtons />
 				{:else}
 					<MoveLevelButtons />
-				{/if} -->
-				<MoveLevelButtons />
+				{/if}
+				<!-- <MoveLevelButtons /> -->
 			</div>
 		</div>
 	</div>
