@@ -32,7 +32,7 @@
 	};
 </script>
 
-<nav aria-label="Pagination">
+<nav aria-label="Pagination" class="mr-4">
 	<span class="relative z-0 inline-flex shadow-sm rounded-md">
 		<a
 			on:click|preventDefault={selectPreviousIndex}

@@ -38,17 +38,19 @@
 				class="h-16 bg-gray-800 px-4 flex flex-col justify-center"
 				style="background-color: rgb(10,10,10);"
 			>
-				<div class="flex items-baseline space-x-3 justify-between">
-					<h2 class="text-lg font-medium text-gray-400">{title}</h2>
-					<!-- <p class="text-sm font-medium text-gray-500">
-						{#if filteredCards}
-							{filteredCards.length} cards total
-						{/if}
-					</p> -->
+				<div class="flex items-center align-middle space-x-3 justify-between">
+					<div class="">
+						<h2 class="text-lg font-medium text-gray-300">{title}&nbsp;</h2>
+						<p class="text-sm font-medium text-gray-400">
+							{#if filteredCards}
+								{filteredCards.length} total
+							{/if}
+						</p>
+					</div>
 					<button
 						on:click={handleSlideOver}
 						type="button"
-						class="flex bg-indigo-600 p-1 rounded-full items-center justify-center text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+						class="flex bg-indigo-600 p-1 rounded-full items-center justify-center text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 h-7"
 					>
 						<!-- Heroicon name: outline/plus-sm -->
 						<svg

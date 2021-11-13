@@ -66,15 +66,42 @@ console.log(mindStoneColor); // "yellow"
 	let question = '';
 
 	const handleFormReset = () => {
-		codeAnswer = `/* Add the solution here */
+		codeQuestion = `// Can you create a variable that contains
+// just the color of the mind stone?
 
-const add = () => a + b;
+const infinityStoneColors = {
+  space: "blue",
+  mind: "yellow",
+  reality: "red",
+  power: "purple",
+  time: "green",
+  soul: "orange"
+};
 
-
+/** BONUS **/
+// How do you rename the variable you create?
 		`;
-		codeQuestion = `/* Add starter code here */
 
-let code = "question";
+		codeAnswer = `// Can you create a const that contains
+// just the color of the mind stone?
+
+  const infinityStoneColors = {
+  space: "blue",
+  mind: "yellow",
+  reality: "red",
+  power: "purple",
+  time: "green",
+  soul: "orange"
+};
+
+/** ANSWER **/
+const { mind } = infinityStoneColors;
+console.log(mind); // "yellow"
+
+/** BONUS ANSWER **/
+// Rename your const to be more specific
+const { mind: mindStoneColor } = infinityStoneColors;
+console.log(mindStoneColor); // "yellow"
 
 
 		`;

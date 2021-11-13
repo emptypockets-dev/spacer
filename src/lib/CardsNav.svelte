@@ -10,19 +10,34 @@
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime.js';
 	import calendar from 'dayjs/plugin/calendar.js';
+
 	dayjs.extend(relativeTime);
 	dayjs.extend(calendar);
 
 	onMount(() => {
 		filteredCards = $projects.collections[0].cards.filter((card) => {
 			if ($appState.showingAllCards) {
-				return card;
-			} else {
 				let startToday = dayjs().startOf('day');
 				let nextReview = dayjs(card.nextReview);
 				let isBetween = nextReview.isSame(startToday, 'day');
-				console.log(isBetween);
-				return isBetween;
+				let pastReview = nextReview.isBefore(startToday, 'day');
+				if (pastReview) {
+					console.log('this past review happens');
+					card.nextReview = dayjs().startOf('day');
+				}
+				return card;
+			} else {
+				let startToday = dayjs().startOf('day');
+				console.log('start today', startToday.format('MM/DD/YYYY'));
+				let nextReview = dayjs(card.nextReview);
+				console.log('next review', nextReview.format('MM/DD/YYYY'));
+				// let isBetween = nextReview.isSame(startToday, 'day');
+				let pastReview = nextReview.isBefore(startToday, 'day');
+				if (pastReview) {
+					console.log('the other past review');
+					card.nextReview = dayjs().startOf('day');
+				}
+				return pastReview;
 			}
 		});
 		if (filteredCards.length > 0) {
@@ -34,6 +49,19 @@
 		}
 	});
 
+	const displayNextReview = (date) => {
+		let startToday = dayjs().startOf('day');
+
+		let nextReview = dayjs(date);
+
+		let isBetween = nextReview.isSame(startToday, 'day');
+		if (isBetween) {
+			return 'today';
+		} else {
+			return dayjs().to(dayjs(nextReview));
+		}
+	};
+
 	$: {
 		filteredCards = $projects.collections[0].cards.filter((card) => {
 			if ($appState.showingAllCards) {
@@ -42,7 +70,13 @@
 				let startToday = dayjs().startOf('day');
 				let nextReview = dayjs(card.nextReview);
 				let isBetween = nextReview.isSame(startToday, 'day');
-				return isBetween;
+				let pastReview = nextReview.isBefore(startToday, 'day');
+				if (pastReview) {
+					card.nextReview = dayjs().startOf('day');
+				}
+				if (isBetween || pastReview) {
+					return true;
+				}
 			}
 		});
 	}
@@ -69,7 +103,7 @@
 								class="block focus:outline-none"
 							>
 								<span class="absolute inset-0" aria-hidden="true" />
-								<p class="text-sm font-medium text-gray-300 truncate">{card.title}</p>
+								<p class="text-sm font-medium text-gray-200 truncate">{card.title}</p>
 
 								<!-- <p class="text-sm text-gray-500 truncate">
 									<span>review</span>
@@ -82,11 +116,11 @@
 								</p> -->
 							</a>
 						</div>
-						<!-- <span
-							class="inline-flex justify-start items-center px-2.5 py-0.5 rounded-full text-xs font-medium {levelLabels[
-								card.level
-							].color} {levelLabels[card.level].bg}"
+						<span
+							class="inline-flex justify-start items-center px-2.5 py-0.5 rounded-full text-xs font-medium border border-gray-500 text-gray-400"
 						>
+							<!-- {levelLabels[ -->
+
 							<svg
 								class="-ml-0.5 mr-1.5 h-2 w-2 {levelLabels[card.level].color}"
 								fill="currentColor"
@@ -95,15 +129,21 @@
 								<circle cx="4" cy="4" r="3" />
 							</svg>
 							{levelLabels[card.level].name}
-						</span> -->
+						</span>
 					</div>
 					<div class="mt-1">
-						<p class="line-clamp-2 text-sm text-gray-400">
+						<p class="line-clamp-2 text-sm text-gray-500">
 							<!-- {card.question} -->
-							next review: {dayjs(card.nextReview).format('MM/DD/YYYY')}
+							<!-- next review: {dayjs(card.nextReview).format('MM/DD/YYYY')} -->
+							Next review {displayNextReview(card.nextReview)}
+							<!-- - {JSON.stringify(card)} -->
+							<!-- Review {dayjs().to(card.nextReview)} -->
+							<!-- {dayjs(card.nextReview).toNow()} -->
 							<!-- {dayjs().calendar(dayjs(card.nextReview))} -->
+
+							<!-- review level {card.level} -->
+							<!-- {card.nextReview} -->
 						</p>
-						<p />
 					</div>
 				</li>
 			{/each}

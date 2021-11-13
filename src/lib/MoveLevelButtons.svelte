@@ -23,16 +23,52 @@
 		if (card.level < 5) {
 			card.level += 1;
 			card.lastReview = dayjs().startOf('day');
+			console.log(card.lastReview);
 			card.nextReview = setNextReview(card.level, card.lastReview);
+			console.log(card.nextReview);
 		}
 		$projects = $projects;
+	};
+
+	const setNextReviewTiming = () => {
+		const card = $projects.collections[0].cards.find((card) => {
+			return card.id === $appState.selectedCardId;
+		});
+		if (card) {
+			// console.log('card level in review timing', card.level);
+			switch (card.level) {
+				case 1:
+					console.log('does this happen');
+					return 'Advance to level two';
+					break;
+				case 2:
+					return 'Advance to level three';
+					break;
+				case 3:
+					return 'Advance to level four';
+					break;
+				case 4:
+					return 'Advance to level five';
+					break;
+				case 5:
+					return 'Advance to level six';
+					break;
+				case 6:
+					return 'Advance to level seven';
+					break;
+				case 7:
+					return 'Put this in the vault!';
+					break;
+				default:
+					break;
+			}
+		}
 	};
 
 	const setNextReview = (level, lastReview) => {
 		switch (level) {
 			case 1:
 				return lastReview.add(1, 'day');
-
 				break;
 			case 2:
 				return lastReview.add(2, 'day');
@@ -49,13 +85,18 @@
 			case 6:
 				return lastReview.add(32, 'day');
 				break;
-			case 6:
+			case 7:
 				return lastReview.add(64, 'day');
 				break;
 			default:
 				break;
 		}
 	};
+
+	$: {
+		console.log($appState.selectedCardId);
+		// setNextReviewTiming($appState.selectedCardId);
+	}
 </script>
 
 <nav aria-label="Pagination">
@@ -81,14 +122,16 @@
 					d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"
 				/>
 			</svg>
-			<span>&nbsp;&nbsp;Review tomorrow</span>
+			<span>&nbsp;&nbsp;Try again tomorrow</span>
 		</button>
 		<button
 			on:click|preventDefault={moveToNextLevel}
 			type="button"
 			class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-700 hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-blue-500"
 		>
-			<span>Review in 2 days&nbsp;&nbsp;</span>
+			<!-- {#if $appState.selectedCardId >= 0} -->
+			<span>{setNextReviewTiming()}&nbsp;&nbsp;</span>
+			<!-- {/if} -->
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				class="h-5 w-5"

@@ -39,12 +39,12 @@
 			</p>
 		</div>
 
-		<div class="flex items-center justify-between">
+		<!-- <div class="flex items-center justify-between">
 			<span
 				class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-transparent text-indigo-500 border border-indigo-500 relative -top-1"
 			>
 				level one
 			</span>
-		</div>
+		</div> -->
 	</div>
 </div>

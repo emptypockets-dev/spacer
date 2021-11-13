@@ -21,15 +21,15 @@
 <!-- Toolbar-->
 <div class="flex-shrink-0" style="background-color: rgb(21,21,21);">
 	<div class="h-16 flex flex-col justify-center">
-		<div class="px-2 sm:px-6 lg:px-4">
-			<div class="py-3 flex justify-between">
+		<div class="">
+			<div class="py-3 flex items-center justify-between">
 				<!-- Left buttons -->
-				<div class="mt-2 relative inline-block text-left">
+				<div class="pl-4 relative inline-block text-left">
 					<div>
 						<button
 							on:click={handleMoreDropdown}
 							type="button"
-							class="-my-2 p-2 rounded-full bg-gray-700 flex items-center text-white hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+							class="p-2 rounded-full bg-gray-700 flex items-center text-white hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
 							id="menu-3-button"
 							aria-expanded="false"
 							aria-haspopup="true"
@@ -58,7 +58,7 @@
 						<div>
 							<button
 								type="button"
-								class="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 sm:rounded-md sm:px-3"
+								class="relative inline-flex items-center px-2  rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-900 hover:bg-gray-50 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600 sm:rounded-md sm:px-3"
 								id="menu-2-button"
 								aria-expanded="false"
 								aria-haspopup="true"
@@ -69,7 +69,7 @@
 								<svg
 									class="h-5 w-5 text-gray-400 sm:ml-2 sm:-mr-1"
 									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 20 20"
+									viewBox="0 0 24 24"
 									fill="currentColor"
 									aria-hidden="true"
 								>
@@ -84,10 +84,14 @@
 					</span>
 				</span>
 				{#if $appState.showingAllCards}
+					<!-- <div class="flex"> -->
 					<MoveButtons />
+					<!-- <MoveLevelButtons /> -->
+					<!-- </div> -->
 				{:else}
 					<MoveLevelButtons />
 				{/if}
+				<!-- <MoveLevelButtons /> -->
 				<!-- Right buttons -->
 
 				<!-- <MoveLevelButtons /> -->
