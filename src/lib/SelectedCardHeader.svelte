@@ -2,6 +2,8 @@
 	import DropdownMenu from './DropdownMenu.svelte';
 	import { projects } from '../stores/cards';
 	import { appState } from '../stores/app-state';
+	import MoveButtons from './MoveButtons.svelte';
+	import MoveLevelButtons from './MoveLevelButtons.svelte';
 
 	let selectedCard;
 
@@ -18,19 +20,18 @@
 </script>
 
 <div
-	class="bg-white pt-5 pb-6 shadow border-b border-t border-gray-700"
+	class="bg-white pt-4 pb-4 border-t border-b border-gray-700 shadow"
 	style="background-color: rgb(21,21,21)"
 >
-	<div class="px-4 sm:flex sm:justify-between sm:items-baseline sm:px-6 lg:px-8">
+	<div class="sm:flex sm:justify-between sm:items-baseline sm:px-6 lg:px-4">
+		<h1 id="message-heading" class="text-xl font-medium text-white">
+			{#if selectedCard}
+				{selectedCard.title}
+			{:else}
+				Select a card to review
+			{/if}
+		</h1>
 		<div class="sm:w-0 sm:flex-1">
-			<h1 id="message-heading" class="text-xl font-medium text-white">
-				{#if selectedCard}
-					{selectedCard.title}
-				{:else}
-					Select a card to review
-				{/if}
-			</h1>
-
 			<p class="mt-1 text-sm text-gray-400 truncate">
 				{#if selectedCard}
 					{selectedCard.question}
@@ -38,43 +39,12 @@
 			</p>
 		</div>
 
-		<div
-			class="mt-4 flex items-center justify-between sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:justify-start"
-		>
-			<!-- <span
-				class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-indigo-100 text-indigo-800"
+		<div class="flex items-center justify-between">
+			<span
+				class="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-transparent text-indigo-500 border border-indigo-500 relative -top-1"
 			>
 				level one
-			</span> -->
-			<div class="ml-3 relative inline-block text-left">
-				<div>
-					<button
-						on:click={handleMoreDropdown}
-						type="button"
-						class="-my-2 p-2 rounded-full bg-white flex items-center text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
-						id="menu-3-button"
-						aria-expanded="false"
-						aria-haspopup="true"
-					>
-						<span class="sr-only">Open options</span>
-						<!-- Heroicon name: solid/dots-vertical -->
-						<svg
-							class="h-5 w-5"
-							xmlns="http://www.w3.org/2000/svg"
-							viewBox="0 0 20 20"
-							fill="currentColor"
-							aria-hidden="true"
-						>
-							<path
-								d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
-							/>
-						</svg>
-					</button>
-				</div>
-
-				<!-- Dropdown menu -->
-				<DropdownMenu />
-			</div>
+			</span>
 		</div>
 	</div>
 </div>

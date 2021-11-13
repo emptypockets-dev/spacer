@@ -15,7 +15,10 @@
 </script>
 
 <!-- Narrow sidebar -->
-<div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block">
+<div
+	class="hidden w-28 bg-gray-900 overflow-y-auto md:block border-gray-700 border-r"
+	style="background-color: rgb(0, 0, 0);"
+>
 	<div class="w-full py-6 flex flex-col items-center">
 		<div class="flex-shrink-0 flex items-center">
 			<img
@@ -28,11 +31,11 @@
 			<a
 				on:click={() => handleReviewFilters('today')}
 				href="/"
-				class="group-hover:text-white hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
+				class="group-hover:text-white hover:bg-gray-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/'
 					? 'text-white'
-					: 'text-indigo-300'}"
-				class:bg-indigo-800={$page.path === '/'}
+					: 'text-gray-300'}"
+				class:selected={$page.path === '/'}
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -54,11 +57,11 @@
 			<a
 				on:click={() => handleReviewFilters('all-cards')}
 				href="/all-cards"
-				class="group-hover:text-whitehover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
+				class="group-hover:text-whitehover:bg-gray-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/all-cards'
 					? 'text-white'
-					: 'text-indigo-300'}"
-				class:bg-indigo-800={$page.path === '/all-cards'}
+					: 'text-gray-300'}"
+				class:bg-gray-800={$page.path === '/all-cards'}
 			>
 				<svg
 					class=" group-hover:text-white h-6 w-6"
@@ -81,11 +84,11 @@
 			<a
 				on:click={() => handleReviewFilters('archive')}
 				href="/archive"
-				class="group-hover:text-white hover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
+				class="group-hover:text-white hover:bg-gray-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/archive'
 					? 'text-white'
-					: 'text-indigo-300'}"
-				class:bg-indigo-800={$page.path === '/archive'}
+					: 'text-gray-300'}"
+				class:bg-gray-800={$page.path === '/archive'}
 			>
 				<!-- <svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -120,11 +123,11 @@
 
 			<a
 				href="/settings"
-				class="group-hover:text-whitehover:bg-indigo-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
+				class="group-hover:text-whitehover:bg-gray-800 hover:text-white group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium {$page.path ===
 				'/settings'
 					? 'text-white'
-					: 'text-indigo-300'}"
-				class:bg-indigo-800={$page.path === '/settings'}
+					: 'text-gray-300'}"
+				class:bg-gray-800={$page.path === '/settings'}
 			>
 				<svg
 					class=" group-hover:text-white h-6 w-6"
@@ -152,3 +155,9 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.selected {
+		background-color: rgb(20, 20, 20);
+	}
+</style>

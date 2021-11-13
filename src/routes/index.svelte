@@ -6,7 +6,7 @@
 	import AddCardSlideOver from '$lib/AddCardSlideOver.svelte';
 	import { onMount } from 'svelte';
 	import { appState } from '$stores/app-state';
-	let title = 'To Review';
+	let title = 'Review Today';
 	import { fly, fade } from 'svelte/transition';
 
 	$appState.showingAllCards = false;
@@ -16,7 +16,7 @@
 	class="relative h-screen overflow-hidden bg-gray-300 flex flex-col"
 	style="background-color: rgb(21, 21, 21);"
 >
-	<div class="min-h-0 flex-1 flex overflow-hidden">
+	<div class="min-h-screen flex-1 flex overflow-hidden">
 		<!-- Main area -->
 		<main class="min-w-0 flex-1 xl:flex">
 			<List {title} />
@@ -27,7 +27,7 @@
 			>
 				<Toolbar />
 
-				<div class="min-h-0 flex-1 overflow-y-auto">
+				<div class="min-h-screen flex-1 overflow-y-auto">
 					<SelectedCardHeader />
 					<!-- Card Section -->
 					<SelectedCard />

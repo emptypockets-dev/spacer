@@ -6,8 +6,8 @@
 
 <div class="relative h-screen bg-gray-50 flex overflow-hidden">
 	<NarrowSidebar />
-	<div class="flex-1 flex flex-col overflow-hidden">
-		<AppHeader />
+	<div class="flex-1 flex flex-col min-h-screen">
+		<!-- <AppHeader /> -->
 		<slot />
 	</div>
 </div>

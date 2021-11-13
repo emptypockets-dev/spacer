@@ -3,40 +3,57 @@
 	import MoveButtons from './MoveButtons.svelte';
 	import MoveLevelButtons from './MoveLevelButtons.svelte';
 	import { appState } from '../stores/app-state';
+	import { projects } from '../stores/cards';
+	let selectedCard;
+	import DropdownMenu from './DropdownMenu.svelte';
+
+	$: {
+		selectedCard = $projects.collections[0].cards.find((card) => {
+			return card.id === $appState.selectedCardId;
+		});
+	}
+	const handleMoreDropdown = () => {
+		console.log('click handle more dropdown');
+		$appState.isMoreDropdownOpen = !$appState.isMoreDropdownOpen;
+	};
 </script>
 
 <!-- Toolbar-->
 <div class="flex-shrink-0" style="background-color: rgb(21,21,21);">
 	<div class="h-16 flex flex-col justify-center">
-		<div class="px-4 sm:px-6 lg:px-8">
+		<div class="px-2 sm:px-6 lg:px-4">
 			<div class="py-3 flex justify-between">
 				<!-- Left buttons -->
-
-				<span class="relative z-0 inline-flex shadow-sm rounded-md sm:shadow-none sm:space-x-3">
-					<span class="hidden lg:flex space-x-3">
+				<div class="mt-2 relative inline-block text-left">
+					<div>
 						<button
+							on:click={handleMoreDropdown}
 							type="button"
-							class="hidden sm:inline-flex -ml-px relative items-center px-4 py-2 rounded-md border border-gray-600 bg-gray-700 text-sm font-medium text-gray-300 hover:bg-gray-800 focus:z-10 focus:outline-none focus:ring-1 focus:ring-blue-600 focus:border-blue-600"
+							class="-my-2 p-2 rounded-full bg-gray-700 flex items-center text-white hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-600"
+							id="menu-3-button"
+							aria-expanded="false"
+							aria-haspopup="true"
 						>
-							<!-- Heroicon name: solid/archive -->
+							<span class="sr-only">Open options</span>
+							<!-- Heroicon name: solid/dots-vertical -->
 							<svg
-								class="mr-2.5 h-5 w-5 text-gray-400"
+								class="h-4 w-4"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 20 20"
-								fill="currentColor"
+								fill="white"
 								aria-hidden="true"
 							>
-								<path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
 								<path
-									fill-rule="evenodd"
-									d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-									clip-rule="evenodd"
+									d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"
 								/>
 							</svg>
-							<span>Archive</span>
 						</button>
-					</span>
+					</div>
 
+					<!-- Dropdown menu -->
+					<DropdownMenu />
+				</div>
+				<span class="relative z-0 inline-flex shadow-sm rounded-md sm:shadow-none sm:space-x-3">
 					<span class="-ml-px relative block sm:shadow-sm lg:hidden">
 						<div>
 							<button
@@ -66,13 +83,13 @@
 						</div>
 					</span>
 				</span>
-
-				<!-- Right buttons -->
 				{#if $appState.showingAllCards}
 					<MoveButtons />
 				{:else}
 					<MoveLevelButtons />
 				{/if}
+				<!-- Right buttons -->
+
 				<!-- <MoveLevelButtons /> -->
 			</div>
 		</div>

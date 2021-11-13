@@ -142,7 +142,7 @@ let code = "question";
 				{#if $appState.isAddCardSlideOverOpen}
 					<div
 						use:clickOutside={handleClickOutside}
-						class="w-screen max-w-2xl z-10 translate-x-full"
+						class="w-screen max-w-5xl z-10 translate-x-full"
 						in:fly={{ x: 450 }}
 						out:fly={{ x: 450 }}
 					>
@@ -188,7 +188,7 @@ let code = "question";
 										<div class="space-y-6 pt-6 pb-5">
 											<div>
 												<label for="title" class="block text-sm font-medium text-gray-900">
-													Review title
+													Code challenge title
 												</label>
 												<div class="mt-1">
 													<input
@@ -196,7 +196,7 @@ let code = "question";
 														type="text"
 														name="project-name"
 														id="project-name"
-														placeholder="Name the thing you want to review"
+														placeholder="For example, check if an array is empty"
 														class="block w-full 
 														shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
 													/>
